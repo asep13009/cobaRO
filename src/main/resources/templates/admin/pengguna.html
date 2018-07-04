@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="tampiladmin/head">
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+ <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+ 
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+ 
+ <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+   
+   <div th:replace="tampiladmin/header">&nbsp;</div>
+
+   <div th:replace="tampiladmin/sidebar">&nbsp;</div>
+
+   <!-- Content Wrapper. Contains page content -->
+   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h3>
+        Managemen Penguna
+      </h3>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="box">
+        <div class="box-header">
+          <small class="box-title">Data Karyawan</small>
+        </div>
+       
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th align="center">No</th>
+                  <th align="center">Nama Karyawan</th>
+                  <th align="center">Jabatan</th>
+                  <th align="center">Departemen</th>
+                  <th align="center">Aksi</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                  <tr th:each="lp,iterStat:${listpengguna}">
+                   <td th:text="${iterStat.count}"></td>
+                   <td th:text="${lp.karyawan.namaLengkap}">&nbsp;</td>
+                   <td th:text="${lp.karyawan.jabatan.namaJabatan}">&nbsp;</td> 
+                   <td th:text="${lp.karyawan.departemen.namaDepartemen}">&nbsp;</td>
+                   
+                  
+                   <td>
+                    
+                    <a type="button" class="btn btn-success margin" data-toggle="modal" data-target="#modal-default2" th:href="@{updatepengguna.html(id=${lp.idLogin})}">
+                      <i class="fa fa-edit"></i> + Akun 
+                    </a>
+                    <button type="button" class="btn btn-danger margin" onclick="konfirmasiHapus()">
+                      <i class="fa fa-trash">Hapus</i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+      </div>
+      
+    </section> 
+  </div>
+  
+</div>
+
+
+
+      <div class="modal fade" id="modal-default2">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" >Tambah Akun</h4>
+              </div>
+              <div class="modal-body">
+                <div class="box box-primary">
+                  <div class="box-header width-border">
+                    <h5 class="box-title"><b>Masukkan Data Karyawan</b></h5>
+                  </div>
+                  <form role="form" action="insertpengguna.html" method="post">
+                   
+                    <div class="form-group "> 
+                      <label >Id Karyawan :</label>
+                      <input type="text" name="idKaryawan" class="form-control" id="12345" th:value="${pengguna.id}"><br>
+                      <label >Username :</label>
+                      <input type="text" name="username" class="form-control" id="12345" placeholder="Username"><br>
+                      <label >Password :</label>
+                      <input type="password" name="password" class="form-control" id="12345" placeholder="Password"><br>
+                   
+                    </div>
+                   
+                   <button type="submit" class="btn btn-success margin" onclick="konfirmasiDulu()" >SIMPAN</button>
+                   <button type="submit" class="btn btn-warning margin">BATAL</button>
+                   
+                 </form>
+               </div>
+               
+               
+               <div class="modal-footer">
+               </div>                                 
+               
+             </div>
+             
+           </div>
+         </div>
+       </div>
+       
+       <div class="modal modal-danger fade" id="modal-danger">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Hapus Data Karyawan</h4>
+              </div>
+              <div class="modal-body">
+                <p>Apakah anda yakin mau hapus???&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Tutup</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>         
+        
+        <div th:replace="tampiladmin/footer">&nbsp;</div>
+
+        
+        <aside class="control-sidebar control-sidebar-dark">
+          <!-- Create the tabs -->
+          <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane" id="control-sidebar-home-tab">
+              <h3 class="control-sidebar-heading">Recent Activity</h3>
+              <ul class="control-sidebar-menu">
+                <li>
+                  <a href="javascript:void(0)">
+                    <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                  </a>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                    <p>Will be 23 on April 24th</p>
+                  </div>
+                  
+                </li>
+                <li>
+                  <a href="javascript:void(0)">
+                    <i class="menu-icon fa fa-user bg-yellow"></i>
+                  </a>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                    
+                    <p>New phone +1(800)555-1234</p>
+                  </div>
+                  
+                </li>
+                <li>
+                  <a href="javascript:void(0)">
+                    <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                  </a>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+                    <p>nora@example.com</p>
+                  </div>
+                  
+                </li>
+                <li>
+                  <a href="javascript:void(0)">
+                    <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                  </a>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                    <p>Execution time 5 seconds</p>
+                  </div>
+                  
+                </li>
+              </ul>
+              <!-- /.control-sidebar-menu -->
+
+              <h3 class="control-sidebar-heading">Tasks Progress</h3>
+              <ul class="control-sidebar-menu">
+                <li>
+                  <a href="javascript:void(0)">
+                    Custom Template Design
+                    <span class="label label-danger pull-right">70%</span>
+                  </a>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                  </div>
+                  
+                </li>
+                <li>
+                  <a href="javascript:void(0)">
+                    Update Resume
+                    <span class="label label-success pull-right">95%</span>
+                  </a>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                  </div>
+                  
+                </li>
+                <li>
+                  <a href="javascript:void(0)">
+                    Laravel Integration
+                    <span class="label label-warning pull-right">50%</span>
+                  </a>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                  </div>
+                  
+                </li>
+                <li>
+                  <h4 class="control-sidebar-subheading">
+                    <a href="javascript:void(0)">
+                      
+                      Back End Framework
+                      <span class="label label-primary pull-right">68%</span>
+                      
+                    </a>
+                  </h4>
+                  <div class="progress progress-xxs">
+                    <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                  </div>
+                  
+                </li>
+              </ul>
+              <!-- /.control-sidebar-menu -->
+
+            </div>
+            <!-- /.tab-pane -->
+            <!-- Stats tab content -->
+            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+            <!-- /.tab-pane -->
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+              <form method="post">
+                <h3 class="control-sidebar-heading">General Settings</h3>
+
+                <div class="form-group">
+                  <label class="control-sidebar-subheading">
+                    Report panel usage
+                    <input type="checkbox" class="pull-right" checked>
+                  </label>
+
+                  <p>
+                    Some information about this general settings option
+                  </p>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label class="control-sidebar-subheading">
+                    Allow mail redirect
+                    <input type="checkbox" class="pull-right" checked>
+                  </label>
+
+                  <p>
+                    Other sets of options are available
+                  </p>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label class="control-sidebar-subheading">
+                    Expose author name in posts
+                    <input type="checkbox" class="pull-right" checked>
+                  </label>
+
+                  <p>
+                    Allow the user to show his name in blog posts
+                  </p>
+                </div>
+                <!-- /.form-group -->
+
+                <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+                <div class="form-group">
+                  <label class="control-sidebar-subheading">
+                    Show me as online
+                    <input type="checkbox" class="pull-right" checked>
+                  </label>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label class="control-sidebar-subheading">
+                    Turn off notifications
+                    <input type="checkbox" class="pull-right">
+                  </label>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                  <label class="control-sidebar-subheading">
+                    Delete chat history
+                    <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                  </label>
+                </div>
+                <!-- /.form-group -->
+              </form>
+            </div>
+            <!-- /.tab-pane -->
+          </div>
+        </aside>
+        
+        <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+   immediately after the control sidebar -->
+   <div class="control-sidebar-bg"></div>
+
+
+ <!-- jQuery 3 -->
+ <script src="bower_components/jquery/dist/jquery.min.js"></script>
+ <!-- Bootstrap 3.3.7 -->
+ <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+ <!-- DataTables -->
+ <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+ <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+ <!-- SlimScroll -->
+ <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+ <!-- FastClick -->
+ <script src="bower_components/fastclick/lib/fastclick.js"></script>
+ <!-- AdminLTE App -->
+ <script src="dist/js/adminlte.min.js"></script>
+ <!-- AdminLTE for demo purposes -->
+ <script src="dist/js/demo.js"></script>
+ <!-- page script -->
+ <script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+
+</body>
+</html>

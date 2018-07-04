@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="tampil/head">
+</head>
+<body>
+	<div class="containerku">
+			<div th:replace="tampil/menu">&nbsp;</div>
+		<div class="bagteng">
+			<div th:replace="tampil/header">&nbsp;</div>
+			
+			<div class="baru">
+				<hr>
+				<ol class="breadcrumb">
+					<li><a href="#">Nilai</a></li>
+					<li class="active"><a href="#">Kemajuan</a></li>
+				</ol>
+			</div>
+			
+			<div class="col-md-2">
+			</div>
+			<div  class="col-md-8">
+			<div id="tabs" >
+				<form role="form" action="biodata.html" method="post">
+					
+					<input type="hidden" name="idKaryawan" th:value="${penggunaaktif.Karyawan.idKaryawan}"> 
+					<input type="hidden" name="gantiDepartemen" th:value="${penggunaaktif.Karyawan.departemen.idDepartemen}">
+					<input type="hidden" name="gantiJabatan" th:value="${penggunaaktif.Karyawan.jabatan.idJabatan}">
+					<input type="hidden" name="pendidikan" th:value="${penggunaaktif.Karyawan.pendidikan}">
+					<input type="hidden" name="photoUser" th:value="${penggunaaktif.Karyawan.photoUser}"> 
+					
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">NIK:</label>
+						<input type="text" name="noKTP" class="form-control" id="recipient-name"  style="text-align: right;" th:value="${penggunaaktif.Karyawan.noKTP}" readonly="readonly">
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Nama Lengkap:</label>
+						<input type="text" name="namaLengkap" class="form-control" id="recipient-name" th:value="${penggunaaktif.Karyawan.namaLengkap}">
+					</div>
+					
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Tempat Lahir:</label>
+						<input type="text" name="tempatLahir" class="form-control" id="recipient-name" th:value="${penggunaaktif.Karyawan.tempatLahir}">
+					</div>
+					
+
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Tanggal Lahir:</label>
+						
+						<input type="text"  class="form-control"  name="tanggalLahir" id="tglLahir" th:value="${#dates.format(penggunaaktif.Karyawan.tanggalLahir,'dd/MM/yyyy')}">
+					</div>
+
+<!-- 					<div class="form-group"> -->
+<!-- 						<label for="message-text" class="control-label">Alamat:</label> -->
+<!-- 						<textarea class="form-control" id="message-text" th:text="${penggunaaktif.Karyawan.alamat}"></textarea> -->
+<!-- 					</div> -->
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">No HP:</label>
+						<input type="text" name="hp" class="form-control" id="hp" style="text-align: right;" th:value="${penggunaaktif.Karyawan.hp}">
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Email:</label>
+						<input type="email" class="form-control" name="email" th:value="${penggunaaktif.Karyawan.email}">
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Jenis Kelamin:</label>
+						<select id="pilih" name="jenisKelamin" class="form-control">
+						<option	th:each="jk : ${T(com.example.cobajpa.model.JenisKelamin).values()}"
+						 th:value="${jk}" th:text="${jk.displayName}"
+						 th:selected="${#strings.toString(jk)==penggunaaktif.Karyawan.jenisKelamin}">
+						</option>
+						</select> 
+					</div>					
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Agama:</label>
+						<select name="agama" class="form-control" >
+							<option
+								th:each="agama : ${T(com.example.cobajpa.model.Agama).values()}"
+								th:value="${agama}" th:text="${agama}"
+								th:selected="${#strings.toString(agama)==penggunaaktif.Karyawan.agama}">
+							</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Kewarganegaraan:</label>
+						<select name="kewarganegaraan" class="form-control">
+								<option
+									th:each="kwn : ${T(com.example.cobajpa.model.Kewarganegaraan).values()}"
+									th:value="${kwn}" th:text="${kwn.displayName}"
+									th:selected="${#strings.toString(kwn)==penggunaaktif.Karyawan.kewarganegaraan}">
+								</option>
+						</select> 
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Status Kawin:</label>
+						<select	name="statusPerkawinan" id="pilih" class="form-control">
+							<option
+								th:each="sk : ${T(com.example.cobajpa.model.StatusKawin).values()}"
+								th:value="${sk}" th:text="${sk}"
+								th:selected="${#strings.toString(sk)==penggunaaktif.Karyawan.statusPerkawinan}">
+							</option>
+						</select>
+					</div>
+					
+						
+					<button  type="submit" class="btn btn-primary">Simpan</button>
+					<button type="reset" class="btn btn-warning">Ulang</button>
+
+						
+					
+				</form>
+				</div>
+			</div>
+			<div class="col-md-2">
+			</div>
+			</div>
+		</div>
+	
+		<div th:replace="tampil/bagkan">&nbsp;</div>
+
+	<div th:replace="tampil/footer">&nbsp;</div>
+</body>
+<script src="jquery-ui/external/jquery/jquery.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<script type="text/javascript">
+
+	$( "#tabs" ).tabs();
+</script>
+<script type="text/javascript">
+	$('#hp').keyup(function(e) {
+		// body...
+		this.value = this.value.replace(/[^0-9\.]/g,'');
+	});
+</script>
+<script type="text/javascript">
+	$( "#tglLahir" ).datepicker({
+				// showOn: "both",
+				yearRange: "1960:2018",
+				maxDate: new Date(),
+				changeMonth: true,
+				changeYear: true,
+				// inline: true,
+				// beforeShowDay: $.datepicker.noWeekends
+			});
+
+		</script>
+		</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="tampiladmin/head">
+	<head>
+		<meta charset="ISO-8859-1">
+		
+	</head>
+	<body>
+
+		<div class="modal-header">
+			<a href="karyawan.html"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+			<h4 class="modal-title text-center" >Tambah Data Karyawan</h4>
+		</div>
+		<form role="form" action="insertkaryawan.html" method="post" enctype="multipart/form-data" >
+			
+			<div class="col-md-4">
+				
+				<div class="custom-file-container" data-upload-id="myFirstImage">
+					<div class="custom-file-container__image-preview"></div>
+					<div align="right">
+						<span>
+							<a  href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">Reset</a>
+						</span>
+					</div>
+					
+					<label>Foto Karyawan </label>   
+					<label class="custom-file-container__custom-file" >         	 	
+						<input type="file" name="poto" class="custom-file-container__custom-file__custom-file-input" accept="image/*" >
+						<input type="hidden" name="MAX_FILE_SIZE" value="10485760" /> 
+						<span  class="custom-file-container__custom-file__custom-file-control"></span>
+					</label>
+					<br/> 
+					<label >Username </label>
+					<div id="validateuser"></div>
+					<input type="text" name="username" id="username" class="form-control"  placeholder="username">
+					
+					<label >Password </label>
+					<input type="password" name="password" class="form-control"  placeholder="password">
+					
+				</div>
+			</div>
+			<div class="col-md-4">
+				
+				<label >Nama Karyawan</label>
+				<input type="text" name="namaLengkap" class="form-control"  placeholder="Nama Karyawan">
+				
+				<label >Nomor KTP </label>
+				<input type="text" class="form-control" name="noKTP" id="noKTP"  style="text-align: right;" placeholder="Masukan no KTP">
+				
+				<label >Tempat Lahir </label>
+				<input type="text"  class="form-control"  name="tempatLahir">
+				
+				<label >Tanggal Lahir </label>
+				<input type="text"  class="form-control"  name="tanggalLahir" id="tglLahir" readonly="readonly">
+				<br>
+				<label >Alamat Jalan </label>    
+				<input type="text" name="jalan" class="form-control"  placeholder="Alamat jalan" >
+				<label >Provinsi </label>    
+				<select id="province" name="optprovinsi"  class="form-control" onchange="tampilkanKab()">
+					<option value="">==Pilih==</option>
+					<option  th:each="lprop : ${listprovinsi}" th:value="${lprop.idWilayah}"   th:text="${lprop.namaWilayah}"   ></option>
+				</select> 
+				
+				<label >Kabupaten </label>    
+				<select id="regency" name="optkabupaten"  class="form-control" onchange="tampilkanKec()">
+					<option value="">==Pilih==</option>
+				</select> 
+				
+				<label >Kecamatan </label>    
+				<select id="kec" name="optkecamatan"  class="form-control">
+					<option value="">==Pilih==</option>
+				</select> 
+				
+				
+				<label >Email </label>
+				<input type="email" name="email" class="form-control"   placeholder="Email">
+				
+				<label >Nomor HP </label>
+				<input type="text" name="hp" class="form-control" id="hp" style="text-align: right;" placeholder="Masukan nomor HP" >
+				
+			</div>
+			
+			<div class="col-md-4">
+				
+				
+				<label >Pendidikan </label> 
+				<input type="text" name="pendidikan" class="form-control"  placeholder="Pendidikan Terakhir">
+				
+				<label >Jenis Kelamin </label>
+				<select id="pilih" name="jenisKelamin"  class="form-control" >
+					<option value="">==Pilih==</option>
+					<option th:each="jk : ${T(com.example.cobajpa.model.JenisKelamin).values()}" th:value="${jk}" th:text="${jk.displayName}"></option>
+				</select>
+				
+				<label >Agama </label>
+				<select  name="agama" id="pilih" class="form-control" >
+					<option value="">==Pilih==</option>
+					<option th:each="agama : ${T(com.example.cobajpa.model.Agama).values()}" th:value="${agama}" th:text="${agama}"></option>
+				</select>
+				
+				<label >Status Perkawinan </label>
+				<select name="statusPerkawinan" id="pilih"  class="form-control" >
+					<option value="">==Pilih==</option>
+					<option th:each="sk : ${T(com.example.cobajpa.model.StatusKawin).values()}" th:value="${sk}" th:text="${sk}"></option>
+				</select>
+				
+				<label >Kewarganegaraan </label>
+				<select name="kewarganegaraan" class="form-control">
+					<option value="">==Pilih==</option>
+					<option th:each="kwn : ${T(com.example.cobajpa.model.Kewarganegaraan).values()}" th:value="${kwn}" th:text="${kwn.displayName}"></option>
+				</select>
+				<br>
+				<label >Departemen </label>
+				<select name="departemen" class="form-control"  >
+					<option value="">==Pilih==</option>
+					<option th:each="ld,iterStat:${departemenlist}"  th:value="${ld.idDepartemen}" th:text="${ld.namaDepartemen}" ></option>
+				</select>
+				
+				<label >Jabatan </label>
+				<select name="jabatan" class="form-control"  >
+					<option value="">==Pilih==</option>
+					<option th:each="lj,iterStat:${jabatanlist}"  th:value="${lj.idJabatan}" th:text="${lj.namaJabatan}" ></option>
+				</select>
+				
+				<label >Role </label>
+				<select name="role" class="form-control"  >
+					<option value="">==Pilih==</option>
+					<option th:each="rl,iterStat:${rolelist}"  th:value="${rl.id}" th:text="${rl.namaRole}" ></option>
+				</select>
+				
+              <!--   
+                <select id="selectjq">
+                	<option>Pilih</option>
+                </select>
+                <input type="text" id="wilayah">
+                
+                 <input type="text" id="searchwilayah"> -->
+				
+			</div>
+			<div align="left">
+				<button type="submit" class="btn btn-success margin" id="myBtn">SIMPAN</button>
+			</div>
+			<br/><br/><br/>
+		</form>
+			<br/><br/><br/>
+		
+		<script src="../jquery-ui/external/jquery/jquery.js"></script>
+		<script src="../jquery-ui/jquery-ui.js"></script>
+		<script>
+			function goBack() {
+				window.history.back();
+			}
+		</script>
+		
+		
+		<script type="text/javascript">
+			$('#hp').keyup(function(e) {
+        // body...
+        this.value = this.value.replace(/[^0-9\.]/g,'');
+    });
+</script>
+
+<script type="text/javascript">
+	$('#noKTP').keyup(function(e) {
+        // body...
+        this.value = this.value.replace(/[^0-9\.]/g,'');
+    });
+</script>
+
+<script type="text/javascript">
+	$( "#tglLahir" ).datepicker({
+        // showOn: "both",
+        /* dateFormat:'yy-mm-dd', */
+        yearRange: "1960:2018",
+        maxDate: new Date(),
+        changeMonth: true,
+        changeYear: true,
+        // inline: true,
+        // beforeShowDay: $.datepicker.noWeekends
+    });
+
+</script>
+
+<script src="dist/file-upload-with-preview.js"></script>
+
+<script>
+            //First upload
+            var firstUpload = new FileUploadWithPreview('myFirstImage')
+            var firstUploadInfoButton = document.querySelector('.upload-info-button--first');
+            
+
+            //Second upload
+            var secondUpload = new FileUploadWithPreview('mySecondImage')
+            var secondUploadInfoButton = document.querySelector('.upload-info-button--second');
+            secondUploadInfoButton.addEventListener('click', function(){
+            	console.log('Second upload:', secondUpload, secondUpload.cachedFileArray)
+            })
+ </script>
+<script>
+	jQuery(document).ready(function($) {
+		$("#username").change(function(){
+			$.get("/API/isUserExist?username="+$(this).val(),function(hasil){
+				if (!hasil){
+					$("#validateuser").text("username tersedia");
+					document.getElementById("myBtn").disabled = false;
+					
+				}else{
+					$("#validateuser").text("Username telah terpakai");
+					document.getElementById("myBtn").disabled = true;
+				}
+			});
+		});
+		$("#search-form").submit(function(event) {
+
+			// Disble the search button
+			enableSearchButton(false);
+
+			// Prevent the form from submitting via the browser.
+			event.preventDefault();
+
+			searchViaAjax();
+
+		});
+
+	});
+
+	function searchViaAjax() {
+
+		var search = {}
+		search["username"] = $("#username").val();
+		search["email"] = $("#email").val();
+
+		$.ajax({
+			type : "KEYUP",
+			contentType : "application/json",
+			url : "${home}search/api/getSearchResult",
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				display(data);
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				enableSearchButton(true);
+			}
+		});
+
+	}
+
+	function enableSearchButton(flag) {
+		$("#btn-search").prop("disabled", flag);
+	}
+
+	function display(data) {
+		var json = "<h4>Ajax Response</h4><pre>"
+				+ JSON.stringify(data, null, 4) + "</pre>";
+		$('#feedback').html(json);
+	}
+</script>
+        
+ 
+         <script type="text/javascript">
+             $(document).ready(function () {
+                 $.get("/jabatanrestnih",function(x){
+                	 var data = [];
+                	 $.each(x,function(index,row){
+                		 var option="<option value='"+row.idJabatan+"'>"+row.namaJabatan+"</option>";
+                		 
+                		 $('#selectjq').append(option);
+                		 data[index]={
+                			index : row.id,
+                			label : row.namaJabatan,
+                			value : row.idJabatan
+                		 };
+                	 });
+                 });
+             });
+         </script>       
+        <script type="text/javascript">
+             $(document).ready(function () {
+                 $.get("/jabatanrestnih",function(x){
+                	 var data = [];
+                	 $.each(x,function(index,row){
+                		 data[index]={
+                			index : row.idJabatan,
+                			label : row.namaJabatan,
+                			value : row.namaJabatan
+                		 };
+                	 });
+              	 $( "#wilayah").autocomplete({
+                         source: data
+                       });
+              	 
+              	
+                 });
+             });
+         </script>
+         
+         <script type="text/javascript">
+         $( "#searchwilayah").autocomplete({
+             source: function (request, response)
+             {
+            	 $.ajax(
+            	{
+            		 url:'/wilayahrestnih',
+            		 dataType:"json",
+            		 data:
+            		 {
+            			 search: $("#searchwilayah").val()  ,
+            			 success: function(data)
+            			 {
+            				 response($.map(data,function(item)
+            						 {
+            					 			return {label:item.nama,value:item.nama};
+            						 }
+            				 ));
+            			 },
+            			 error:function(xhr,ststus,error)
+            			 {
+            				 alert("ERROR");
+            			 }
+            		 };
+            	 })
+            	 
+             }
+         });
+         </script>
+         
+         <script type="text/javascript">
+         function tampilkanKab(){
+        		$('#regency').children('option:not(:first)').remove();
+        		$('#district').children('option:not(:first)').remove();
+        		$.get("/wilayahby?level=2&id="+$('#province').val(),function(x){
+        			var data = [];
+        			$.each(x,function(index,row){
+        				var option="<option value='"+row.idWilayah+"'>"+row.namaWilayah+"</option>";
+        				$('#regency').append(option);
+        				data[index]={
+        						index : row.idWilayah,
+        						label : row.namaWilayah,
+        						value : row.namaWilayah
+        						};
+        				});
+        			});
+        		}
+         </script>
+         <script type="text/javascript">
+
+        	function tampilkanKec(){
+        		$('#kec').children('option:not(:first)').remove();
+        		$.get("/wilayahby?level=3&id="+$('#regency').val(),function(x){
+        			var data = [];
+        			$.each(x,function(index,row){
+        				var option="<option value='"+row.idWilayah+"' >"+row.namaWilayah+" </option>";
+        				$('#kec').append(option);
+        				data[index]={
+        						index : row.idWilayah,
+        						label : row.namaWilayah,
+        						value : row.namaWilayah
+        						};
+        				});
+        			});
+        		}
+        </script>
+    </body>
+    </html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>FilterDropDown example Bootstrap</title>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  		<!-- Ionicons -->
+  		<link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+		<script src="dist/js/filterDropDown.js"></script>
+		<script>
+			// initialising dt table
+			$(document).ready(function() {
+			
+				$('#example').DataTable({					
+					// Definition of filter to display					
+					filterDropDown: {										
+						columns: [
+							{ 
+								idx: 2
+							},
+							{ 
+								idx: 3
+							}
+						],
+						bootstrap: true
+					}
+				} );
+			} );
+		</script>		
+	</head>
+	<body>
+		<div class="container">
+				<table class="table" id="example" class="display" width="100%" cellspacing="0" cellpadding="1">
+				<thead>
+					<tr>
+						<th>Nama</th>
+						<th>Periode</th>
+						<th>Departemen</th>
+						<th>Jabatan</th>
+						<th>Aksi</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Tiger</td>
+						<td>Nixon</td>
+						<td>System Architect</td>
+						<td>Edinburgh</td>
+						<td>
+	                    <a button type="button" class="btn btn-warning margin" data-toggle="modal" data-target="#modal-default1"><i class="fa fa-eye">lihat</i></a>
+	                    <a button type="button" class="btn btn-success margin" data-toggle="modal" data-target="#modal-default"><i class="fa fa-edit">edit</i></a>
+	                    <a button type="button" class="btn btn-danger margin" onclick="konfirmasiHapus()">
+	                    <i class="fa fa-trash">hapus</i></a>
+                  </td>
+					</tr>
+					
+				</tbody>
+				<tfoot>					
+					<tr>
+						<th>Nama</th>
+						<th>Periode</th>
+						<th>Departemen</th>
+						<th>Jabatan</th>
+						<th>Aksi</th>
+					</tr>				
+				</tfoot>
+			</table>
+		</div>
+	</body>
+</html>

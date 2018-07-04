@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="tampiladmin/head">
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="karyawan.html"><span
+					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+
+				<h4 class="modal-title text-center">Lihat Data Karyawan</h4>
+			</div>
+			<div class="modal-body">
+				<div class="box box-primary">
+					<div class="box-header width-border">
+						<section class="content">
+							<div class="box-body">
+
+
+								<div class="col-lg-3 col-md-4 col-xs-6 ">
+
+									<img class="img-responsive"
+										th:src="${'images/user/'+foto}"
+										alt="Foto Karyawan">
+
+								</div>
+								<div class="table-responsive">
+									<table class="table">
+										
+											
+										
+										<tr>
+											<td>Nama</td>
+											<td>:</td>
+											<td th:text="${karyawan.namaLengkap}"></td>
+										</tr>
+										<tr>
+											<td>No Ktp</td>
+											<td>:</td>
+											<td th:text="${karyawan.noKTP}"></td>
+										</tr>
+										<tr>
+											<td>Tempat Lahir</td>
+											<td>:</td>
+											<td th:text="${karyawan.tempatLahir}"></td>
+										</tr>
+										<tr>
+											<td>Tanggal Lahir</td>
+											<td>:</td>
+											<td th:text="${karyawan.tanggalLahir}"></td>
+										</tr>
+										<tr>
+											<td>Email</td>
+											<td>:</td>
+											<td th:text="${karyawan.email}"></td>
+										</tr>
+										<tr>
+											<td>No Hp</td>
+											<td>:</td>
+											<td th:text="${karyawan.hp}"></td>
+										</tr>
+										<tr>
+											<td>Pendidikan</td>
+											<td>:</td>
+											<td th:text="${karyawan.pendidikan}"></td>
+										</tr>
+										<tr>
+											<td>Jenis Kelamin</td>
+											<td>:</td>
+											<td th:text="${karyawan.jenisKelamin}"></td>
+										</tr>
+										<tr>
+											<td>Agama</td>
+											<td>:</td>
+											<td th:text="${karyawan.agama}"></td>
+										</tr>
+										<tr>
+											<td>Alamat</td>
+											<td>:</td>
+											
+											<td th:text="${karyawan.alamats[0].jalan}+' '+${karyawan.alamats[0].wilayah.namaWilayah}+' '+${karyawan.alamats[0].wilayah.wilayah.namaWilayah}+' '+${karyawan.alamats[0].wilayah.wilayah.wilayah.namaWilayah}"></td>
+										</tr>
+										<tr>
+											<td>Status Kawin</td>
+											<td>:</td>
+											<td th:text="${karyawan.statusPerkawinan}"></td>
+										</tr>
+										<tr>
+											<td>Kewarganegaraan</td>
+											<td>:</td>
+											<td th:text="${karyawan.kewarganegaraan}"></td>
+										</tr>
+										<tr>
+											<td>Jabatan</td>
+											<td>:</td>
+											<td th:text="${karyawan.jabatan.namaJabatan}"></td>
+										</tr>
+										<tr>
+											<td>Departemen</td>
+											<td>:</td>
+											<td th:text="${karyawan.departemen.namaDepartemen}"></td>
+										</tr>
+									</table>
+								</div>
+								'
+							</div>
+						</section>
+
+
+					</div>
+
+
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function goBack() {
+			window.history.back();
+		}
+	</script>
+
+
+
+</body>
+</html>

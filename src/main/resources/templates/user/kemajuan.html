@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="tampil/head">
+</head>
+<body>
+	<div class="containerku">
+			<div th:replace="tampil/menu">&nbsp;</div>
+		<div class="bagteng">
+			<div th:replace="tampil/header">&nbsp;</div>
+			<div class="baru">
+				<hr>
+				<ol class="breadcrumb">
+					<li><a href="#">Nilai</a></li>
+					<li class="active"><a href="#">Kemajuan</a></li>
+				</ol>
+			</div>
+			<div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+				<ul id="myTabs" class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="dropdown">
+						<a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents">Pilih Penilai <span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+							<li><a href="#dropdown1" role="tab" id="dropdown1-tab" data-toggle="tab" aria-controls="dropdown1">Penilai 1</a></li>
+							<li><a href="#dropdown2" role="tab" id="dropdown2-tab" data-toggle="tab" aria-controls="dropdown2">Penilai 2</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+
+			<div id="myTabContent" class="tab-content">
+				<div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
+					<div class="table-responsive ">
+						<ol class="breadcrumb">
+							<li>Nama Penilai 1</li>
+
+						</ol>
+						<table class="table">
+
+							<tr>
+								<th rowspan="2"><center>Aspek Penilaian</center></th>
+								<th colspan="2"><center>Nilai</center></th>
+								<th rowspan="2"><center>Nilai Akhir</center></th>
+							</tr>
+							<tr>
+								<th scope="col">Atasan</th>
+								<th scope="col">Karyawan</th>
+							</tr>
+							<tr>
+								<th scope="row" colspan="5"><i>Aspek 1</i></th>
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 1</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 2</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 3</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 4</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 5</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 6</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 7</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 8</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 9</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 10</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							
+						</table>
+						<ol class="breadcrumb">
+							<a href="#" class="btn btn-success btn-lg">
+								<span class="glyphicon glyphicon-print"></span> Print 
+							</a>
+						</ol>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
+					<div class="table-responsive ">
+						<ol class="breadcrumb">
+							<li>Nama Penilai 2</li>
+
+						</ol>
+						<table class="table">
+							<tr>
+								<th rowspan="2"><center>Aspek Penilaian</center></th>
+								<th colspan="2"><center>Nilai</center></th>
+								<th rowspan="2"><center>Nilai Akhir</center></th>
+							</tr>
+							<tr>
+								<th scope="col">Atasan</th>
+								<th scope="col">Karyawan</th>
+							</tr>
+							<tr>
+								<th scope="row" colspan="5"><i>Aspek 1</i></th>
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 1</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 2</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 3</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 4</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 5</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 6</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 7</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 8</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 9</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+							<tr>
+								<td scope="row">Subaspek 10</td>
+								<td>80</td>
+								<td>90</td>
+								<td>90</td>
+
+							</tr>
+						</table>
+						<ol class="breadcrumb">
+							<a href="#" class="btn btn-success btn-lg">
+								<span class="glyphicon glyphicon-print"></span> Print 
+							</a>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div th:replace="tampil/bagkan">&nbsp;</div>
+</div>
+<div th:replace="tampil/footer">&nbsp;</div>
+		
+</body>
+<script src="jquery-ui/external/jquery/jquery.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<script type="text/javascript">
+
+	$( "#tabs" ).tabs();
+</script>
+<script type="text/javascript">
+	$('#myTabs a').click(function (e) {
+		e.preventDefault()
+		$(this).tab('show')
+
+
+	});
+
+
+</script>
+<script type="text/javascript">
+	$('#myTabs a[href="#profile"]').tab('show') ;// Select tab by name
+	$('#myTabs a:first').tab('show'); // Select first tab
+	$('#myTabs a:last').tab('show'); // Select last tab
+	$('#myTabs li:eq(2) a').tab('show'); // Select third tab (0-indexed)
+</script>
+
+
+
+<script>
+	$(document).ready(function(){
+		$(".nav-tabs a").click(function(){
+			$(this).tab('show');
+		});
+	});
+</script>
+</html>

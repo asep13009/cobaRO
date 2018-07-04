@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="../images/icons/faviconLG.ico"/>
+	
+	<link rel="stylesheet" type="text/css" href="../css/me.css">
+
+	<link rel="stylesheet" type="text/css" href="../jquery-ui/jquery-ui.css">
+
+	<link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.css">
+	<script type="text/javascript" src="../bootstrap-3.3.7/js/jquery-3.3.1.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-theme.css">
+
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="containerku">
+		<div class="bagkir">
+			<ul class="nav nav-pills nav-stacked">
+				<li role="presentation" class="active"><a><center>Menu</center></a></li>
+			</ul>
+			<hr>
+			<div class="bs-example" data-example-id="simple-nav-stacked"> 
+				<ul class="nav nav-pills nav-stacked nav-pills-stacked-example"> 
+					<li role="presentation" class="active"><a href="home.html">>> Home</a></li> 
+					<li role="presentation" ><a href="penilaian.html">>> Penilaian</a></li> 
+					<li role="presentation"><a href="perubahan.html">>> Perubahan</a></li>
+					<li ><a>>> Profile</a></li> 
+					<li class="submenu"><a href="biodata.html">>> Biodata</a></li> 
+					<li class="submenu"><a href="gantipass.html">>> Ganti Password</a></li> 
+					<li ><a href="catatanatasan.html">>> Catatan</a></li> 
+					<li ><a data-toggle="modal" data-target="#myModal">>> Logout</a></li> 
+					
+
+				</ul> 
+			</div>
+		</div>
+
+
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Alert</h4>
+					</div>
+					<div class="modal-body">
+						<p>Apakah anda benar benar ingin keluar?</p>
+					</div>
+					<div class="modal-footer">
+							<a href="../index.html"> Logout </a>						
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="bagteng">
+			<ul class="nav nav-pills nav-stacked">
+				<li role="presentation" class="active">
+					<a>
+
+						<center>Raport Online Atasan</center>
+					</a>
+				</li>
+			</ul>
+			<hr>
+			<div class="col-lg-3 col-md-4 col-xs-6 thumb">
+				<a class="thumbnail" href="#">
+					<img class="img-responsive" src="../images/user/user1.jpg" alt="Foto Karyawan">
+				</a>
+			</div>
+			<div class="table-responsive">
+				<table class="table">
+					<tr>
+						<td>NIK</td>
+						<td>:</td>
+						<td>1281712819887</td>
+					</tr>
+					<tr>
+						<td>Nama</td>
+						<td>:</td>
+						<td>Maryam Sukma Puji Astuti</td>
+					</tr>
+					<tr>
+						<td>Posisi</td>
+						<td>:</td>
+						<td>Programer</td>
+					</tr>
+					<tr>
+						<td>Departemen</td>
+						<td>:</td>
+						<td>HR</td>
+					</tr>
+				</table>
+			</div>
+			<div class="baru">
+				<hr>
+				<ol class="breadcrumb">
+					<li><a href="#">Nilai</a></li>
+					<li class="active"><a href="#">Kemajuan</a></li>
+				</ol>
+			</div>
+
+			<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">Informaasi 1</a></li>
+					<li><a href="#tabs-2">Informaasi 2</a></li>
+					<li><a href="#tabs-3">Informasi 3</a></li>
+				</ul>
+				<div id="tabs-1">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				</div>
+				<div id="tabs-2">
+					Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.
+				</div>
+				<div id="tabs-3">
+					Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.
+				</div>
+			</div>
+		</div>
+		<div class="bagkan">
+			<!-- <br>
+			<center>
+				<button class="btn btn-danger" type="button">
+					Messages 
+					<span class="label label-warning">4</span>
+				</button>
+			</center> -->
+
+			
+		</div>
+	</div>
+	<center>© 2018 Rapor Online<a"> <i>Team</i></a>.</center>
+</body>
+<script src="../jquery-ui/external/jquery/jquery.js"></script>
+<script src="../jquery-ui/jquery-ui.js"></script>
+<script>
+
+
+	$( "#tabs" ).tabs();
+
+
+
+</script>
+
+</html>

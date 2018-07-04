@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="tampiladmin/head">
+	<head>
+		<meta charset="ISO-8859-1">
+
+	</head>
+	<body>
+		
+		
+		<div class="modal-header">
+			<a href="karyawan.html">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			</a>
+			<h4 class="modal-title text-center">Ubah Data Karyawan</h4>
+			
+		</div>
+		<form role="form" action="updatekaryawan.html" method="post"  enctype="multipart/form-data" >
+			<div class="col-md-4">
+			<label>Foto Sebelumnya </label>
+				<div style="clear: both;"></div>
+				<div class="col-lg-2 col-md-4 col-xs-4" ></div>
+					<div class="col-lg-8 col-md-7 col-xs-3" align="center">
+						<img class="img-responsive"
+						th:src="'images/user/'+ ${karyawan.photoUser}"
+						alt="Foto Karyawan">
+					</div>
+					<div class="col-lg-2 col-md-2 col-xs-5" > </div>
+				<div style="clear: both;"></div>
+					<!-- <input type="hidden" th:value="${karyawan.photoUser}" name="photoUser"> --> 
+				<div class="custom-file-container" data-upload-id="myFirstImage">
+					<div class="custom-file-container__image-preview"></div>
+					<div align="right">
+						<span>
+							<a  href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">Reset</a>
+						</span>
+					</div>
+					
+					<div style="clear: both;"></div>
+					<label>Perbaharui Foto Karyawan </label> 
+					<label class="custom-file-container__custom-file"> 
+						<input type="file" name="poto"
+						class="custom-file-container__custom-file__custom-file-input"
+						accept="image/*" >
+						
+						<input type="hidden" name="MAX_FILE_SIZE" value="10485760" /> 
+						
+						<span class="custom-file-container__custom-file__custom-file-control"></span>
+						
+					</label> 
+					
+				</div>
+
+			</div>
+			<div class="col-md-4">
+				<input type="hidden" name="photoUser" th:value="${karyawan.photoUser}">
+			<input type="hidden" name="idKaryawan" class="form-control" th:value="${karyawan.idKaryawan}" readonly="readonly">
+			
+			<label>Nama Karyawan </label>
+			<input	type="text" name="namaLengkap" class="form-control"	th:value="${karyawan.namaLengkap}">
+			<br/>
+			<label>Nomor KTP </label> 
+			<input type="text" class="form-control" name="noKTP"	th:value="${karyawan.noKTP}" id="noKTP" style="text-align: right;" placeholder="Masukan no KTP">
+			<br/>
+			<label>Tempat Lahir </label>
+			<input type="text" class="form-control" name="tempatLahir" th:value="${karyawan.tempatLahir}">
+			<br/>
+			<label>Tanggal Lahir </label> 
+			<input type="text" class="form-control" name="tanggalLahir" id="tglLahir" th:value="${#dates.format(karyawan.tanggalLahir,'dd/MM/yyyy')}" readonly="readonly">
+			<br/>
+			<label >Alamat Jalan </label>    
+			<input type="text" name="jalan" th:value="${karyawan.alamats[0].jalan}" class="form-control"  >
+				<label >Provinsi </label>    
+				<select id="province" name="optprovinsi"  class="form-control" onclick="tampilkanKab()">
+					<option value="">==Pilih==</option>
+					<option  th:each="lprop : ${listprovinsi}" th:value="${lprop.idWilayah}"   th:text="${lprop.namaWilayah}"  th:selected="${lprop.isSelected(samawil)}" ></option>
+				</select> 
+				
+				<label >Kabupaten </label>    
+				<select id="regency" name="optkabupaten"  class="form-control"   onclick="tampilkanKec()">
+					<option value="">==Pilih==</option>
+				</select> 
+				
+				<label >Kecamatan </label>    
+				<select id="kec" name="optkecamatan"  class="form-control">
+					<option value="">==Pilih==</option>
+				</select> 		
+			
+			<br/>
+			<label>Email </label> 
+			<input type="email" name="email" class="form-control" placeholder="Email"  th:value="${karyawan.email}"> 
+			<br/>
+			<label>Nomor HP </label> 
+			<input type="text" name="hp" class="form-control" id="hp" style="text-align: right;" placeholder="Masukan nomor HP" th:value="${karyawan.hp}"> 
+			</div>
+			
+			<div class="col-md-4">
+			<label>Pendidikan </label> 
+			<input type="text" name="pendidikan" class="form-control"  placeholder="Pendidikan Terakhir" th:value="${karyawan.pendidikan}"> 
+			<br/>
+			<label>Jenis Kelamin </label> 
+			<select id="pilih" name="jenisKelamin"  class="form-control">
+				<option value="">==Pilih==</option>
+				<option  th:each="jk : ${T(com.example.cobajpa.model.JenisKelamin).values()}"  th:value="${jk}" th:text="${jk.displayName}"   th:selected="${#strings.toString(jk)==karyawan.jenisKelamin}"></option>
+			</select> 
+			<br/>
+			<label>Agama </label> 
+			<select name="agama" id="pilih"  class="form-control">
+				<option value="">==Pilih==</option>
+				<option th:each="agama : ${T(com.example.cobajpa.model.Agama).values()}"  th:value="${agama}" th:text="${agama}" th:selected="${#strings.toString(agama)==karyawan.agama}"></option>
+			</select> 
+			<br/>
+			<label>Status Perkawinan </label> 
+			<select name="statusPerkawinan" id="pilih" class="form-control">
+				<option value="">==Pilih==</option>
+				<option th:each="sk : ${T(com.example.cobajpa.model.StatusKawin).values()}" th:value="${sk}" th:text="${sk}" th:selected="${#strings.toString(sk)==karyawan.statusPerkawinan}"></option>
+			</select> 
+			<br/>
+			<label>Kewarganegaraan </label> 
+			<select name="kewarganegaraan" class="form-control">
+				<option value="">==Pilih==</option> 
+				<option th:each="kwn : ${T(com.example.cobajpa.model.Kewarganegaraan).values()}" th:value="${kwn}" th:text="${kwn.displayName}" th:selected="${#strings.toString(kwn)==karyawan.kewarganegaraan}"></option>
+			</select> 
+			<br/>
+			<label>Jabatan </label> 
+			<select name="jabatan" class="form-control"> 
+				<option value="">==Pilih==</option>
+				<option th:each="lj :${jabatanlist}" th:value="${lj.idJabatan}" th:text="${lj.namaJabatan}" th:selected="${lj.isSelected(samajab)}"></option>
+			</select> 
+			<br/>
+			<label>Departemen </label> 
+			<select name="departemen" class="form-control">
+				<option value="">==Pilih==</option>
+				<option th:each="ld : ${departemenlist}" th:value="${ld.idDepartemen}" th:text="${ld.namaDepartemen}" th:selected="${ld.isSelected(sama)}"></option>
+			</select>
+
+		</div>
+		<div style="clear: both;"></div>
+		<div align="left">
+				<button type="submit" class="btn btn-success margin" >SIMPAN</button>
+			</div>
+		<br/>
+	</form>
+	<br/><br/><br/>
+<script src="../jquery-ui/external/jquery/jquery.js"></script>
+<script src="../jquery-ui/jquery-ui.js"></script>
+<script>
+	function goBack() {
+		window.history.back();
+	}
+</script>
+
+
+<script type="text/javascript">
+	$('#hp').keyup(function(e) {
+			// body...
+			this.value = this.value.replace(/[^0-9\.]/g, '');
+		});
+	</script>
+
+	<script type="text/javascript">
+		$('#noKTP').keyup(function(e) {
+			// body...
+			this.value = this.value.replace(/[^0-9\.]/g, '');
+		});
+	</script>
+
+	<script type="text/javascript">
+		$("#tglLahir").datepicker({
+			// showOn: "both",
+			/* dateFormat:'yy-mm-dd', */
+			yearRange : "1960:2018",
+			maxDate : new Date(),
+			changeMonth : true,
+			changeYear : true,
+		// inline: true,
+		// beforeShowDay: $.datepicker.noWeekends
+	});
+</script>
+
+<script src="dist/file-upload-with-preview.js"></script>
+<script>
+		//First upload
+		var firstUpload = new FileUploadWithPreview('myFirstImage')
+		var firstUploadInfoButton = document
+		.querySelector('.upload-info-button--first');
+		firstUploadInfoButton.addEventListener('click', function() {
+			console.log('First upload:', firstUpload,
+				firstUpload.cachedFileArray);
+		})
+
+		//Second upload
+		var secondUpload = new FileUploadWithPreview('mySecondImage')
+		var secondUploadInfoButton = document
+		.querySelector('.upload-info-button--second');
+		secondUploadInfoButton.addEventListener('click', function() {
+			console.log('Second upload:', secondUpload,
+				secondUpload.cachedFileArray)
+		})
+	</script>
+	
+	         
+      <script type="text/javascript">
+         function tampilkanKab(){
+        		$('#regency').children('option:not(:first)').remove();
+        		$('#district').children('option:not(:first)').remove();
+        		$.get("/wilayahby?level=2&id="+$('#province').val(),function(x){
+        			var data = [];
+        			/* th:selected='"+row.isSelected(samaKAB)+"' */
+        			$.each(x,function(index,row){
+        				var option="<option value='"+row.idWilayah+"' >"+row.namaWilayah+"</option>";
+        				$('#regency').append(option);
+        				data[index]={
+        						index : row.idWilayah,
+        						label : row.namaWilayah,
+        						value : row.namaWilayah
+        						};
+        				});
+        			});
+        		}
+         </script>
+         <script type="text/javascript">
+
+        	function tampilkanKec(){
+        		$('#kec').children('option:not(:first)').remove();
+        		$.get("/wilayahby?level=3&id="+$('#regency').val(),function(x){
+        			var data = [];
+        			$.each(x,function(index,row){
+        				var option="<option value='"+row.idWilayah+"' >"+row.namaWilayah+" </option>";
+        				$('#kec').append(option);
+        				data[index]={
+        						index : row.idWilayah,
+        						label : row.namaWilayah,
+        						value : row.namaWilayah
+        						};
+        				});
+        			});
+        		}
+        </script>	}
+        </script>
+
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="tampil/head">
+	
+	<script>
+		function myFunction() {
+			document.getElementById("myForm").reset();
+		}
+	</script>
+	</head>
+<body>
+	<div class="containerku">
+		<div th:replace="tampil/menu">&nbsp;</div>
+		<div class="bagteng">
+			<div th:replace="tampil/header">&nbsp;</div>
+			<div class="baru">
+				<hr>
+				<ol class="breadcrumb">
+					<li><a href="#">Nilai</a></li>
+					<li class="active"><a href="#">Kemajuan</a></li>
+				</ol>
+			</div>
+			<div class="col-md-2">
+			</div>
+			<div  class="col-md-8">
+				<div id="tabs" >
+				
+				<form action="gantipass.html" method="post" id="signupForm">
+					
+					<div class="form-group">
+					<label for="recipient-name" class="control-label">Password Sekarang</label>	
+					<div id="validatepass"></div>
+					<div class="td">
+					    <input name="passLama" id="passlama" type="password" class="form-control" required="required" />
+					</div>
+					<label for="recipient-name" class="control-label">Password Baru</label>	
+					<div class="td">
+						<input type="password" name="password" id="password" class="form-control"   title="Password must contain 8 charachters, including english lower/upper case letter (a-z) and at least one number(0-9)" required ></div>
+					    
+					</div>
+					<label for="recipient-name" class="control-label">Password re-Password Baru</label>
+					<div class="td">
+					    <input type="password" name="repassword" id="repassword" class="form-control"   required />
+					</div>   
+					
+					
+					 
+					<button type="submit" id="myBtn" class="btn btn-primary">Simpan</button>
+					<button type="reset" onclick="myFunction()"  class="btn btn-warning">Reset</button>
+					
+				</form>
+				</div>
+				
+				<div class="col-md-2">
+				</div>
+			</div>
+			<div th:replace="tampil/bagkan">&nbsp;</div>
+		</div>
+
+	</div>
+	<div th:replace="tampil/footer">&nbsp;</div>
+</body>
+<script type="text/javascript">
+var password = document.getElementById("password"), 
+	confirm_password = document.getElementById("repassword"), 
+	passlama = document.getElementById("passlama"),
+	
+	data = console.log("${penggunaaktif.password}");
+
+/* function validPasswordLama(){
+	if(data != passlama.value){
+		passlama.setCustomValidity("Passwords Don't Match in database");
+	}else{
+		passlama.setCustomValidity('');
+	}
+} */
+
+function validatePassword(){
+	if(password.value != confirm_password.value) {
+		confirm_password.setCustomValidity("Passwords Don't Match");
+	} else {
+		confirm_password.setCustomValidity('');
+	}
+} 
+	/* passlama.onkeyup = validPasswordLama; */
+	password.onchange = validatePassword;
+	confirm_password.onkeyup = validatePassword;
+</script>
+
+<script src="jquery-ui/external/jquery/jquery.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<script type="text/javascript">
+
+	$( "#tabs" ).tabs();
+</script>
+
+<script>
+	jQuery(document).ready(function($) {
+		$("#passlama").change(function(){
+			$.get("/API/isPassExist?password="+$(this).val(),function(hasil){
+				if (!hasil){
+					
+					$("#validatepass").text("Password Salah");
+					document.getElementById("myBtn").disabled = true;
+					
+					
+				}else{
+					$("#validatepass").text("Password Benar");
+					document.getElementById("myBtn").disabled = false;
+				}
+			});
+		});
+		$("#search-form").submit(function(event) {
+
+			// Disble the search button
+			enableSearchButton(false);
+
+			// Prevent the form from submitting via the browser.
+			event.preventDefault();
+
+			searchViaAjax();
+
+		});
+
+	});
+
+	function searchViaAjax() {
+
+		var search = {}
+		search["password"] = $("#passlama").val();
+		search["email"] = $("#email").val();
+
+		$.ajax({
+			type : "KEYUP",
+			contentType : "application/json",
+			url : "${home}search/api/getSearchResult",
+			data : JSON.stringify(search),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data) {
+				console.log("SUCCESS: ", data);
+				display(data);
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+				display(e);
+			},
+			done : function(e) {
+				console.log("DONE");
+				enableSearchButton(true);
+			}
+		});
+
+	}
+
+	function enableSearchButton(flag) {
+		$("#btn-search").prop("disabled", flag);
+	}
+
+	function display(data) {
+		var json = "<h4>Ajax Response</h4><pre>"
+				+ JSON.stringify(data, null, 4) + "</pre>";
+		$('#feedback').html(json);
+	}
+</script>
+
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+</html>

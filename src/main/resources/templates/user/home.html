@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="tampil/head">
+</head>
+<body>
+
+	<div class="containerku">
+		<div th:replace="tampil/menu">&nbsp;</div>
+		<div class="bagteng">
+			<div th:replace="tampil/header">&nbsp;</div>
+
+			<div class="baru">
+				<hr>
+				<ol class="breadcrumb">
+					<li><a href="#">Nilai</a></li>
+					<li class="active"><a href="#">Kemajuan</a></li>
+				</ol>
+			</div>
+
+			<div id="tabs" >
+				<ul >
+					<li th:each="lkonten,iterStat:${listkonten}">
+						<a th:href="'#tabs-'+${lkonten.id}" th:text="${lkonten.namaKonten}"></a>
+					</li>
+				</ul>
+				<th:block th:each="lkonten,iterStat:${listkonten}">
+					<div th:id="'tabs-'+${lkonten.id}" th:text="${lkonten.deskripsi}">
+					</div>
+				</th:block>
+			</div>
+		</div>
+
+		<div th:replace="tampil/bagkan">&nbsp;</div>
+	</div>
+	<div th:replace="tampil/footer">&nbsp;</div>
+</body>
+<script src="jquery-ui/external/jquery/jquery.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<script>
+	$("#tabs").tabs();
+</script>
+
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="tampil/head">
+</head>
+<body>
+	<div class="containerku">
+			<div th:replace="tampil/menu">&nbsp;</div>
+			<div class="bagteng">
+			<div th:replace="tampil/header">&nbsp;</div>
+			<div class="baru">
+				<hr>
+				<ol class="breadcrumb">
+					<li><a href="#">Nilai</a></li>
+					<li class="active"><a href="#">Kemajuan</a></li>
+				</ol>
+			</div>
+			
+
+			<div class="table-responsive ">
+				<table class="table">
+					<tr>
+						<th rowspan="2"><center>Aspek Penilaian</center></th>
+						<th colspan="2"><center>Nilai</center></th>
+						<th rowspan="2"><center>Nilai Akhir</center></th>
+					</tr>
+					<tr>
+						<th scope="col">Atasan</th>
+						<th scope="col">Karyawan</th>
+					</tr>
+					<tr>
+						<th scope="row" colspan="5"><i>Aspek 1</i></th>
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 1</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 2</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 3</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 4</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 5</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 6</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 7</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 8</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 9</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 10</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+
+					<tr>
+						<th scope="row" colspan="5"><i>Aspek 2</i></th>
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 1</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 2</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 3</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 4</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 5</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 6</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 7</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 8</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 9</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td scope="row">Subaspek 10</td>
+						<td>80</td>
+						<td>90</td>
+						<td>90</td>
+						
+					</tr>
+					<tr>
+						<td >&nbsp</td>
+						<td>&nbsp</td>
+						<td><b>Total :</b></td>
+						<td><b>187 </b> </td>
+						
+					</tr>
+				</table>
+			</div>
+			<ol class="breadcrumb">
+				<a href="#" class="btn btn-success btn-lg">
+					<span class="glyphicon glyphicon-print"></span> Print 
+				</a>
+			</ol>
+		</div>
+		
+		<div th:replace="tampil/bagkan">&nbsp;</div>
+</div>
+	<div th:replace="tampil/footer">&nbsp;</div>
+</body>
+<script src="jquery-ui/external/jquery/jquery.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<script type="text/javascript">
+
+	$( "#tabs" ).tabs();
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+	<body>
+		<center>
+	        <h1>Person</h1>
+	        <table border>
+	            <tr>
+	                <th>ID</th>
+	                <th>Name</th>
+	                <th colspan="2">Action</th>
+	            </tr>
+	            <tr th:each="lp,iterStat:${listperson}">
+	                <td th:text=${lp.id}></td>
+	                <td th:text=${lp.name}></td>
+	                <td><a th:href="@{updateperson(id=${lp.id})}">Update</a></td>
+	                <td><a th:href="@{deleteperson(id=${lp.id})}">Delete</a></td>
+	            </tr>
+	            </c:forEach>
+	        </table>
+	        <a href="/">Back</a>
+    	</center>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="tampiladmin/head">
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="departemen.html"><span
+					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+
+				<h4 class="modal-title text-center"> Data Departemen <span th:text="${departemen.namaDepartemen}"></span></h4>
+			</div>
+			
+			<div class="modal-body">
+				<b>Nama Atasan : <span th:text="${departemen.penilai.namaLengkap}"></span></b>
+				<div class="box box-primary">
+					<div class="box-header width-border">
+						<section class="content">
+							<div class="box-body">
+								
+								<div class="table-responsive">
+									<table class="table" >
+									<thead>
+									 <tr>
+									 	<th>No</th>
+									 	<th>Nama Karyawan</th>
+									 </tr>
+									</thead>
+									<tbody>
+										  <tr th:each="lk,iterStat:${listkaryawan}">
+						                    <td th:text=${iterStat.count}>&nbsp;</td>
+						                    <td th:text="${lk.namaLengkap}">&nbsp;</td>
+										</tr>
+									</tbody>	
+									</table>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function goBack() {
+			window.history.back();
+		}
+	</script>
+
+
+
+</body>
+</html>

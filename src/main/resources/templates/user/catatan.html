@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="tampil/head">
+</head>
+<body>
+	<div class="containerku">
+			<div th:replace="tampil/menu">&nbsp;</div>
+		<div class="bagteng">
+			<div th:replace="tampil/header">&nbsp;</div>
+			<div class="baru">
+			<hr>
+			<ol class="breadcrumb">
+				<li><a href="#">Nilai</a></li>
+				<li class="active"><a href="#">Kemajuan</a></li>
+			</ol>
+			</div>
+			<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">Catatan 1</a></li>
+					<li><a href="#tabs-2">Catatan 2</a></li>
+					<li><a href="#tabs-3">Catatan 3</a></li>
+					<li><a href="#tabs-1">Catatan 4</a></li>
+					<li><a href="#tabs-2">Catatan 5</a></li>
+					<li><a href="#tabs-3">Catatan 6</a></li>
+					<li><a href="#tabs-1">Catatan 7</a></li>
+					<li><a href="#tabs-2">Catatan 8</a></li>
+					<li><a href="#tabs-3">Catatan 9</a></li>
+					
+
+				</ul>
+				<div id="tabs-1">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				</div>
+				<div id="tabs-2">
+					Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.
+				</div>
+				<div id="tabs-3">
+					Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.
+				</div>
+			</div>
+		</div>
+	<div th:replace="tampil/bagkan">&nbsp;</div>
+</div>
+	<div th:replace="tampil/footer">&nbsp;</div>
+</body>
+<script src="jquery-ui/external/jquery/jquery.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<script type="text/javascript">
+
+	$( "#tabs" ).tabs();
+</script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+</html>
